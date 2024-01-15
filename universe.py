@@ -7,16 +7,19 @@ l = ["#60f7b2", "#ffba4a", "#4abaff", "#8c4aff", "#ff654a"]
 class Universe(tk.Canvas):
     def __init__(self, master=None, **kwargs):
         print("Init!")
+	print("Caution! This runs best on Linux!")
         tk.Canvas.__init__(self, master, **kwargs)
         self.bind("<Button-1>", self.zoom_in)
         self.bind("<Button-3>", self.zoom_out)
         self.scale_factor = 1.0
 
     def zoom_in(self, event):
+        print("loading")
         self.scale_factor *= 1.1
         self.scale("all", event.x, event.y, 1.1, 1.1)
 
     def zoom_out(self, event):
+        print("loading")
         self.scale_factor /= 1.1
         self.scale("all", event.x, event.y, 0.9, 0.9)
 
@@ -49,14 +52,14 @@ def create_galaxy_layer(canvas, num_big_stars, num_small_stars, big_radius_range
             small_y = y + big_radius * 1.9 * random.uniform(1, 3) * math.sin(angle)
             draw_circle(canvas, small_x, small_y, small_radius, star_id, fill=random.choice(l))
 	    
-        for _ in range(12):
+        for _ in range(4):
             small_radius = random.uniform(*small_radius_range)
             angle = random.uniform(0, 2 * 3.14159)
 	    
 	    # Smaller stars to spread out, non-galaxy
             small_x2 = x + big_radius * 1.9 * random.uniform(16, 30) * math.cos(angle)
             small_y2 = y + big_radius * 1.9 * random.uniform(16, 30) * math.sin(angle)
-            draw_circle(canvas, small_x2, small_y2, small_radius, star_id, fill="#ffffff")
+            draw_circle(canvas, small_x2, small_y2, 0.7, star_id, fill="#ffffff")
 
 def main():
     root = tk.Tk()
@@ -67,13 +70,13 @@ def main():
 
     # Create a layer with big stars and smaller stars around them
     print("Generating Main stars")
-    create_galaxy_layer(main_canvas, num_big_stars=1000, num_small_stars=25, big_radius_range=(1.2, 2.3), small_radius_range=(0.1, 0.4))
+    create_galaxy_layer(main_canvas, num_big_stars=1000, num_small_stars=12, big_radius_range=(1.2, 2.3), small_radius_range=(0.1, 0.4))
     print("Generating Sub stars")
     create_galaxy_layer(main_canvas, num_big_stars=500, num_small_stars=7, big_radius_range=(0.5, 1.2), small_radius_range=(0.1, 0.4))
     print("Generating Smaller sub stars")
     create_galaxy_layer(main_canvas, num_big_stars=250, num_small_stars=2, big_radius_range=(0.3, 1), small_radius_range=(0.1, 0.4))
     print("Generating Tiny stars")
-    create_galaxy_layer(main_canvas, num_big_stars=25, num_small_stars=22, big_radius_range=(2.3, 3), small_radius_range=(0.1, 0.4))
+    create_galaxy_layer(main_canvas, num_big_stars=25, num_small_stars=2, big_radius_range=(2.3, 3), small_radius_range=(0.1, 0.4))
     root.mainloop()
 
 if __name__ == "__main__":
