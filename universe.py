@@ -7,7 +7,7 @@ l = ["#60f7b2", "#ffba4a", "#4abaff", "#8c4aff", "#ff654a"]
 class Universe(tk.Canvas):
     def __init__(self, master=None, **kwargs):
         print("Init!")
-	print("Caution! This runs best on Linux!")
+        print("Caution! This runs best on Linux!")
         tk.Canvas.__init__(self, master, **kwargs)
         self.bind("<Button-1>", self.zoom_in)
         self.bind("<Button-3>", self.zoom_out)
