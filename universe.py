@@ -1,6 +1,9 @@
 import tkinter as tk
 import random
 import math
+
+l = ["#60f7b2", "#ffba4a", "#4abaff", "#8c4aff", "#ff654a"]
+
 class Universe(tk.Canvas):
     def __init__(self, master=None, **kwargs):
         tk.Canvas.__init__(self, master, **kwargs)
@@ -31,10 +34,10 @@ def create_galaxy_layer(canvas, num_big_stars, num_small_stars, big_radius_range
             angle = random.uniform(0, 2 * 3.14159)  # Random angle in radians
             small_x = x + big_radius * 1.9 * random.uniform(1, 3) * math.cos(angle)
             small_y = y + big_radius * 1.9 * random.uniform(1, 3) * math.sin(angle)
-            draw_circle(canvas, small_x, small_y, small_radius, fill="#ffa855")
-            small_x = x + big_radius * 1.9 * random.uniform(60, 89) * math.cos(angle)
-            small_y = y + big_radius * 1.9 * random.uniform(60, 89) * math.sin(angle)
-            draw_circle(canvas, small_x, small_y, small_radius, fill="#55ffaf")
+            draw_circle(canvas, small_x, small_y, small_radius, fill=random.choice(l))
+            small_x = x + big_radius * 1.9 * random.uniform(12, 16) * math.cos(angle)
+            small_y = y + big_radius * 1.9 * random.uniform(12, 16) * math.sin(angle)
+            draw_circle(canvas, small_x, small_y, small_radius, fill="#ffffff")
             # small_x2 = x + big_radius * 0.1 * random.uniform(90, 90) * math.cos(angle)
             # small_y2 = y + big_radius * 0.1 * random.uniform(60, 89) * math.sin(angle)
             # draw_circle(canvas, small_x2, small_x2, small_radius, fill="cyan")
@@ -53,4 +56,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
