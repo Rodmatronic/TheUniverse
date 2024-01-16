@@ -4,11 +4,10 @@ import random
 
 import math
 
-
+from tkinter import messagebox
+from tkinter import ttk
 
 l = ["#60f7b2", "#ffba4a", "#4abaff", "#8c4aff", "#ff654a", "#FFE6AD", "#46E366", "#E34673", "#664FE6", "#4FA3E6", "#E6E54F", "#E6E54F"]
-
-
 
 class Universe(tk.Canvas):
 
@@ -25,7 +24,6 @@ class Universe(tk.Canvas):
         self.bind("<Button-3>", self.zoom_out)
 
         self.scale_factor = 1.0
-
 
 
     def smooth_zoom(self, target_scale, event):
@@ -116,7 +114,7 @@ def create_galaxy_layer(canvas, num_big_stars, num_small_stars, big_radius_range
 
 
 
-        for _ in range(5):
+        for _ in range(1):
 
             small_radius = random.uniform(*small_radius_range)
 
@@ -364,21 +362,14 @@ def create_galaxy_layer(canvas, num_big_stars, num_small_stars, big_radius_range
 
             draw_circle(canvas, x+23, y-3, big_radius+0.1, star_id, fill="#FBD6FF")
 
-
-
 def main():
 
     root = tk.Tk()
-
     root.title("The Universe")
-
-
-
     main_canvas = Universe(root, width=1920, height=1080, bg="black")
-
     main_canvas.pack(expand=tk.YES, fill=tk.BOTH)
-
-
+    # Create a button to show the popup
+    messagebox.showinfo("Popup", "Warning! This runs awfully on Windows. It is made for Linux, please try it on linux. Also, this requires a good PC!")
 
     # Create a layer with big stars and smaller stars around them
 
